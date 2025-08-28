@@ -2,7 +2,7 @@ package Estudo_pessoal;
 
 
 public class POO_estudo {
-    // É esse método (main()) que o Java procura para começar a execução.
+    // É esse metodo (main()) que o Java procura para começar a execução.
     // As outras classes são apoio, usadas para organizar o código.
     public static void main() {
 
@@ -10,7 +10,7 @@ public class POO_estudo {
     
 }
 
-/* CLASS: é um container com varias funções, funções que estão de acordo com o objetivo da classe */
+/* CLASS: é um container com várias funções, funções que estão de acordo com objetivo da classe */
 
 //    //try running this code
     //    try {
@@ -20,20 +20,20 @@ public class POO_estudo {
 
     //    }
 
-/* Em Java, você não cria objetos direto (como em JS), você primeiro define uma classe (o molde) e depois instancia (cria/ "new")
+
+/*Em Java, você não cria objetos direto (como em JS), você primeiro define uma classe (o molde) e depois instancia (cria/ "new")
 objetos dela.
   - Classe = molde (plano de construção)
   - Objeto = produto construído a partir do molde
 
   // O objeto é cada instância derivada da classe; É um elemento do conjunto representado pela classe
-
-  // Diferença de Java e JavaScript em relação a classe e objeto: 
+  // Diferença de Java e JavaScript em relação a classe e objeto:
   - Classe → Receita de bolo (não dá pra comer)
   - Objeto → Bolo pronto (você usa e interage)
   - Java → Sempre precisa da receita antes de fazer o bolo
   - JavaScript → Pode inventar o bolo na hora ou seguir uma receita
 
-  // Analogia C e Java: 
+  // Analogia C e Java:
   - Criar uma struct em C é parecido com criar uma classe sem métodos em Java.
   - Criar uma variável da struct em C é parecido com instanciar um objeto da classe em Java.
   - A diferença é que a classe em Java também tem funções (métodos) dentro dela, coisa que a struct em C não tem.
@@ -45,8 +45,8 @@ objetos dela.
         - ATTRIBUTES: height, weight or hobbies
         - METHODS: run, speak, kick, jump
 
-    // Diferença de Public e Private: 
-        - public quer dizer que o atributo ou método pode ser acessado de qualquer lugar do programa. 
+    // Diferença de Public e Private:
+        - public quer dizer que o atributo ou método pode ser acessado de qualquer lugar do programa.
         Não importa se está em outra classe ou até em outro pacote, ele fica visível.
         - private Quer dizer que o atributo ou método só pode ser acessado dentro da própria classe.
         Nenhuma outra classe consegue acessar diretamente. Isso serve para proteger dados (encapsulamento).
@@ -68,9 +68,9 @@ objetos dela.
         - java.sql → banco de dados (JDBC).
         - java.time → datas e horas (nova API do Java 8).
         - javax.swing / java.awt → interface gráfica (GUI).
-          - java.awt.event 
+          - java.awt.event
 
         // we can import other java files
-        // we can run a API, that is a long list of methods 
+        // we can run a API, that is a long list of methods
                 ->  JAR é um arquivo/ficheiro compactado, usado para distribuir um conjunto de classes Java
 */
