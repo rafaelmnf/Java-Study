@@ -1,16 +1,14 @@
 package Estudo_pessoal;
 
-
 public class POO_estudo {
     // É esse metodo (main()) que o Java procura para começar a execução.
     // As outras classes são apoio, usadas para organizar o código.
-    public static void main() {
-
+    public static void main(String[] args) {
     }
     
 }
 
-/* CLASS: é um container com várias funções, funções que estão de acordo com objetivo da classe */
+// CLASS: é um container com várias funções, funções que estão de acordo com objetivo da classe
 
 //    //try running this code
     //    try {
@@ -21,7 +19,7 @@ public class POO_estudo {
     //    }
 
 
-/*Em Java, você não cria objetos direto (como em JS), você primeiro define uma classe (o molde) e depois instancia (cria/ "new")
+/* Em Java, voce nao cria objetos direto (como em JS), você primeiro define uma classe (o molde) e depois instancia (cria/ "new")
 objetos dela.
   - Classe = molde (plano de construção)
   - Objeto = produto construído a partir do molde
@@ -46,17 +44,17 @@ objetos dela.
         - METHODS: run, speak, kick, jump
 
     // Diferença de Public e Private:
-        - public quer dizer que o atributo ou método pode ser acessado de qualquer lugar do programa.
+        - public quer dizer que o atributo ou metodo pode ser acessado de qualquer lugar do programa.
         Não importa se está em outra classe ou até em outro pacote, ele fica visível.
-        - private Quer dizer que o atributo ou método só pode ser acessado dentro da própria classe.
+        - private Quer dizer que o atributo ou metodo só pode ser acessado dentro da própria classe.
         Nenhuma outra classe consegue acessar diretamente. Isso serve para proteger dados (encapsulamento).
         Get e Set são como portas controladas para acessar os atributos -> GetNomeDoAtributo
 
-    // É necessário sempre declarar uma classe separada que contém um método main
-        - Lembrando que esse método deve ter o modificar de acesso do tipo static.Isto é, pode ser acessado por qualquer classe dentro (e fora) do projeto;
-        - Para o método static não é necessário instanciar o objeto
+    // É necessário sempre declarar uma classe separada que contém um metodo main
+        - Lembrando que esse metodo deve ter o modificar de acesso do tipo static.Isto é, pode ser acessado por qualquer classe dentro (e fora) do projeto;
+        - Para o metodo static não é necessário instanciar o objeto
           - Exemplo:
-            -Math.sqr(900) -> vc chama o método diretamente, logo, não é necessário cria 'classe' nome = new 'classe';
+            -Math.sqr(900) -> vc chama o metodo diretamente, logo, não é necessário cria 'classe' nome = new 'classe';
               - A classe Math faz parte do pacote java.lang
 
     // PACOTES JAVA (são só uma parte da Java Standard Library (API Java), que é enorme e já vem junto com a linguagem)
