@@ -4,7 +4,8 @@ import java.util.ArrayList;
 
 public class Inventory {
 
-    // The ArrayList library is used to store and manage groups of objects (since a normal array cannot store objects, just integers or string)
+    // The ArrayList library is used to store and manage
+    // groups of objects (since a normal array cannot store objects, just integers or string)
     private ArrayList<Item> items;
     // here we declare an ArrayList called items of item objects
 
@@ -18,13 +19,15 @@ public class Inventory {
     public void addItem(Item item) {
         items.add(item);
     }
+    // .add is a method that belongs to the java.util.ArrayList
 
     // PUBLIC methods is used to get access to the private variable
     public void displayInventory () {
         // For-Each: (type variableName : arrayName)
-        // --> the type is type of those variables/objects inside the array, than you can create a variable tha represents the index of each thing inside the array
+        // --> the type is type of those variables/objects inside the array, than you can create a variable that
+        // represents the index of each thing inside the array
         for(Item item : items) {
-            System.out.println("Item: " + item.getName() + ", Quantity: " + item.getQuantity());
+            System.out.println(item.toString());
         }
     }
 

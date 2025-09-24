@@ -22,4 +22,8 @@ public class Item {
         this.quantity = quantity;
     }
 
+    @Override // overrides a method that exists on a superclass or comes with the interface
+    public String toString() {
+        return "Item: " + name + ", Quantity: " + quantity;
+    }
 }
