@@ -1,7 +1,8 @@
 package Estudo_pessoal.understanding_POO;
 
 // A Class is a blueprint to use the object
-public class Item {
+// An ABSTRACT class or method can only be used by other classes, we cant create an object with a abstract thing
+public abstract class Item {
     // Using PRIVATE means that we cannot access this variable outside this class, meaning the opposite of PUBLIC
     private final String name;
     // We use final here because we cannot change the name of an item, unless you want it to be changed
@@ -22,8 +23,5 @@ public class Item {
         this.quantity = quantity;
     }
 
-    @Override // overrides a method that exists on a superclass or comes with the interface
-    public String toString() {
-        return "Item: " + name + ", Quantity: " + quantity;
-    }
+    public abstract void displayInfo();
 }
