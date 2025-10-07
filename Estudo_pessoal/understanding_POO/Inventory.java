@@ -1,12 +1,12 @@
 package Estudo_pessoal.understanding_POO;
-import java.sql.SQLOutput;
+
 import java.util.ArrayList;
 
 public class Inventory {
 
     // The ArrayList library is used to store and manage
     // groups of objects (since a normal array cannot store objects, just integers or string)
-    private ArrayList<Item> items;
+    private final ArrayList<Item> items;
     // here we declare an ArrayList called items of item objects
 
     // here is the inventory constructor: it assigns a value of new empty arraylist to that array list of items
@@ -27,7 +27,7 @@ public class Inventory {
         // --> the type is type of those variables/objects inside the array, than you can create a variable that
         // represents the index of each thing inside the array
         for(Item item : items) {
-            System.out.println(item.toString());
+            item.displayInfo();
         }
     }
 

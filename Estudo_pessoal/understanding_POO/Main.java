@@ -7,15 +7,16 @@ public class Main {
         Inventory inventory = new Inventory();
 
         // Item item =  new Item("Generic Item", 10);
-        Item apples = new Item("Apples", 5);
-        Item sword = new Item("Sword", 1);
+        /* It doesn't make sense creating an Item "item", because everything has some specific method or variable, so, we use the type Abstract and create separate classes with Item as father.
+           Item apples = new Item("Apples", 5);
+           Item sword = new Item("Sword", 1);  */
         Fruit fruit = new Fruit("Apple", 20, "Fuji");
-        Weapon fireball = new Weapon("fireball", 4, 25, "fire");
+        Weapon sword = new Weapon("sword", 1, 50, "fire");
 
         inventory.addItem(fruit);
-        inventory.addItem(apples);
+        // inventory.addItem(apples);
+        // inventory.addItem(sword);
         inventory.addItem(sword);
-        inventory.addItem(fireball);
 
         inventory.displayInventory();
 
@@ -36,3 +37,31 @@ to safely access or modify them.
 // Override and Overload are elements of polymorphism
 // Polymorphism is the capability of something exists or behave as different ways, depending on the context.
 // Overriding allows a method to behave differently based on the object that invokes it
+
+//Abstraction:
+// Abstract class: is a restricted class that cannot be used to create objects (to access it, it must be inherited from another class).
+// Abstract method: can only be used in an abstract class, and it does not have a body. The body is provided by the subclass (inherited from)
+/*
+// An interface is "What a class must do" and a Abstract Class is "What a class is + some base logic"
+An exemple of how interfaces work:
+
+// We create a interface type with some methods
+public interface Veiculo {
+    void mover();
+}
+
+// Get the interface with "implements", can be used with others interfaces like: implements Veiculo, Modelo {}
+public class Carro implements Veiculo {
+    @Override
+    public void mover() {
+        System.out.println("O carro dirige");
+    }
+    // Abstraction -->
+}
+public class Bicicleta implements Veiculo {
+    @Override
+    public void mover() {
+        System.out.println("A bicicleta pedala");
+    }
+}
+ */
