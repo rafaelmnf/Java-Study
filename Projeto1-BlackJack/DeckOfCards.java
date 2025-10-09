@@ -15,7 +15,7 @@ public class DeckOfCards
          "Seven", "Eight", "Nine", "Ten", "Jack", "Queen", "King"};
       String[] suits = {"Hearts", "Diamonds", "Clubs", "Spades"};
 
-      deck = new Card[NUMBER_OF_CARDS]; // create array of Card objects
+      deck = new Card[NUMBER_OF_CARDS]; // create array of 52 Card objects
       currentCard = 0; // first Card dealt will be deck[0]
 
       // populate deck with Card objects -> with all cards organized
@@ -30,7 +30,7 @@ public class DeckOfCards
           else                        // 10, J, Q, K → 10
               value = 10;
 
-          deck[count] = new Card(face, suit, value);
+          deck[count] = new Card(face, suit, value); // create a Card for each space of the Array
       }
 
    }
