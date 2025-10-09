@@ -1,89 +1,97 @@
-import java.util.ArrayList;
 import java.util.Scanner;
 
-public class BlackJack
-{
-   // execute application
-   public static void main(String[] args)
-   {
-       DeckOfCards myDeckOfCards = new DeckOfCards(); // create the deck
-       myDeckOfCards.shuffle(); // place Cards in random order
+public class BlackJack {
 
-       // for user input
-       Scanner scanner = new Scanner(System.in);
-       String userInput;
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        DeckOfCards deck = new DeckOfCards();
+        deck.shuffle();
 
-       // Creating an array of Cards called userCards
-       ArrayList<Card> userCards = new ArrayList<>();
+        // Objects
+        Player player = new Player("Rafael");
+        Dealer dealer = new Dealer();
 
-       int userSum;
+        // Dealing the cards
+        // We can use this method because dealer class extends player
+        player.addCardToHand(deck.dealCard());
+        dealer.addCardToHand(deck.dealCard());
+        player.addCardToHand(deck.dealCard());
+        dealer.addCardToHand(deck.dealCard());
 
-       // Game starts giving to user 2 cards
-       userCards.add(myDeckOfCards.dealCard());
-       userCards.add(myDeckOfCards.dealCard());
+        System.out.println("--- Wellcome to BlackJack! ---\n");
 
-       // Main loop for the player's turn
-       while (true) { // We use an infinite loop that will be broken internally
-           userSum = 0; // RESET the sum each round to recalculate correctly
+        // Show dealer's first card
+        dealer.displayInitialHand();
 
-           System.out.println("-------------------------");
-           System.out.print("Your cards are: ");
-           for (Card card : userCards) {
-               System.out.print(card + " | "); // Shows all the cards
-               userSum += card.value; // Recalculates the sum from zero
-           }
+        // Player's turn
+        playerTurn(player, deck, scanner);
 
-           System.out.printf("\nYour total sum: %d\n", userSum);
+        // Dealer's Turn (only happens if the player didn't bust)
+        if (player.getHandValue() <= 21) {
+            dealerTurn(dealer, deck);
+        }
 
-           // Check for end-of-game conditions (bust or 21)
-           if (userSum > 21) {
-               System.out.println("You busted! Game over.");
-               break; // Exit the loop
-           }
-           if (userSum == 21) {
-               System.out.println("Blackjack! You win!");
-               break; // Exit the loop
-           }
+        // Determine the winner
+        determineWinner(player, dealer);
 
-           // Asks the player if they want another card
-           // A do-while loop to repeat the prompt until valid input is received
-           do {
-               System.out.print("Do you want another card? (y/n): ");
-               userInput = scanner.nextLine();
-               // Checks if the input is not 'y' or 'n', ignoring case
-               if (!userInput.equalsIgnoreCase("y") && !userInput.equalsIgnoreCase("n")) {
-                   System.out.println("Invalid input. Please enter 'y' or 'n'.");
-               }
-           } while (!userInput.equalsIgnoreCase("y") && !userInput.equalsIgnoreCase("n"));
+        scanner.close();
+    }
 
-           // Logic to hit or stand
-           if (userInput.equalsIgnoreCase("y")) {
-               Card newCard = myDeckOfCards.dealCard();
-               userCards.add(newCard);
-               System.out.println("You received a: " + newCard);
-           } else { // if user typed "n"
-               System.out.println("You stood with " + userSum + ".");
-               break; // Exit the loop to end the player's turn
-           }
-       } // End of while loop
+    public static void playerTurn(Player player, DeckOfCards deck, Scanner scanner) {
+        System.out.println("--- YOUR TURN ---");
+        // infinite loop, only stops with break
+        while (true) {
+            player.displayHand();
+            int handValue = player.getHandValue();
 
-       System.out.println("Player's turn is over.");
-       scanner.close();
-   } 
-} // end class DeckOfCardsTest
+            if (handValue >= 21) {
+                break;
+            }
 
+            System.out.print("Do you want another card? (y/n): ");
+            // Ignoring case sensitive
+            String userInput = scanner.nextLine();
+            if (userInput.equalsIgnoreCase("y")) {
+                player.addCardToHand(deck.dealCard());
+            } else {
+                break;
+            }
+        }
+        System.out.println();
+        player.displayHand();
+        System.out.println("-------------------\n");
+    }
 
+    public static void dealerTurn(Dealer dealer, DeckOfCards deck) {
+        System.out.println("--- DEALER'S TURN ---");
+        // while true, keep getting cards
+        while (dealer.shouldHit()) {
+            System.out.println("Dealer hits...");
+            dealer.addCardToHand(deck.dealCard());
+        }
+        dealer.displayHand();
+        System.out.println("---------------------\n");
+    }
 
+    public static void determineWinner(Player player, Dealer dealer) {
+        System.out.println("--- FINAL RESULTS ---");
+        player.displayHand();
+        dealer.displayHand();
 
+        // Getting those values of player and dealer
+        int playerValue = player.getHandValue();
+        int dealerValue = dealer.getHandValue();
 
-// To Study:
-/* Differences between array x ArrayList
-   Array (faster): Static (fixed). Defined at creation and cannot be changed.
-          It can store primitive types (int, double, char) and Objects (String, Card).
-        declaration: Type[] name = new Type[size]; Ex: Card[] myDeck = new Card[52];
-   ArrayList (slow): Dynamic (flexible). Automatically grows and shrinks when adding/removing elements.
-                     Stores ONLY Objects. For primitive types, uses Wrapper Classes (Integer, Double, Character)
-        declaration: ArrayList<Type> name = new ArrayList<>(); Ex: ArrayList<Card> playerHand = new ArrayList<>();
-        Full of useful methods: .add(), .get(), .remove(), .size(), .clear(), .contains(), etc.
-
-*/
+        if (playerValue > 21) {
+            System.out.println("You busted! Dealer wins.");
+        } else if (dealerValue > 21) {
+            System.out.println("Dealer busted! You win!");
+        } else if (playerValue > dealerValue) {
+            System.out.println("You win!");
+        } else if (dealerValue > playerValue) {
+            System.out.println("Dealer wins.");
+        } else {
+            System.out.println("It's a push (tie).");
+        }
+    }
+}
