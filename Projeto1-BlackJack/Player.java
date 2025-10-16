@@ -3,24 +3,29 @@ import java.util.ArrayList;
 public class Player {
     private final String name;
     private final ArrayList<Card> hand;
+    // Player can
+    private final ArrayList<Card> splittedHand;
     // Array of Card type to store player's cards
+    private int splitted
 
     // Constructor
     public Player(String name) {
         this.name = name;
         this.hand = new ArrayList<>(); // hand starts empty
+        this.splittedHand = new ArrayList<>();
     }
 
+    // Now we have to specify for which hand would we want to run those methods
     // Adding card to player
-    public void addCardToHand(Card card) {
-        this.hand.add(card);
+    public void addCardToHand(Card card, ArrayList<Card> hand) {
+        hand.add(card);
     }
 
     // getting handValue
-    public int getHandValue() {
+    public int getHandValue(ArrayList<Card> hand) {
         int value = 0;
         int aceCount = 0;
-        for (Card card : this.hand) {
+        for (Card card : hand) {
             if (card.getFace().equals("Ace")) {
                 aceCount++;
             }
@@ -41,8 +46,16 @@ public class Player {
         for (Card card : this.hand) {
             System.out.print(card + " | ");
         }
-        System.out.println(" (Value: " + getHandValue() + ")");
+        System.out.println(" (Value: " + getHandValue(hand) + ")");
+        if (!this.splittedHand.isEmpty()) {
+            System.out.print(this.name + "'s second hand: ");
+            for (Card card : this.splittedHand) {
+                System.out.print(card + " | ");
+            }
+            System.out.println(" (Value: " + getHandValue(splittedHand) + ")");
+        }
     }
+
 
     public String getName() {
         return this.name;
@@ -51,8 +64,9 @@ public class Player {
     public ArrayList<Card> getHand() {
         return hand;
     }
-
-    public void clearHand() {
-        this.hand.clear();
+    public ArrayList<Card> getSplittedHand() {
+        return splittedHand;
     }
+
+    public void clearHand(ArrayList<Card> hand) { hand.clear(); }
 }

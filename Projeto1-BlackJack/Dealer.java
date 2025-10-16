@@ -12,7 +12,7 @@ public class Dealer extends Player {
 
 
     public boolean shouldHit() {
-        return getHandValue() < 17;
+        return getHandValue(getHand()) < 17;
         // returns true or false depending if handValue is lower or bigger than 17
     }
 }

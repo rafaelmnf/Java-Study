@@ -1,4 +1,3 @@
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class BlackJack {
@@ -24,11 +23,33 @@ public class BlackJack {
         Player[] players = new Player[qntPlayers];
 
         for(int i = 0; i < qntPlayers; i++) {
-            System.out.printf("Name of player[%d]: ", i+1);
+            System.out.printf("Name of player[%d]: ", i + 1);
             String namePlayer = scanner.nextLine();
             players[i] = new Player(namePlayer);
-            players[i].addCardToHand(deck.dealCard());
-            players[i].addCardToHand(deck.dealCard());
+            players[i].addCardToHand(deck.dealCard(), players[i].getHand());
+            players[i].addCardToHand(deck.dealCard(), players[i].getHand());
+
+            // REMEMBERING IT IS IN A LOOP FOR EACH PLAYER
+            String split = "";
+            // if both cards equals, you can split and make two games
+            // if player decides to split, normal hand will contain first card, and the second hand will contain second card
+            if (players[i].getHand().get(0).getFace().equals(players[i].getHand().get(1).getFace())) {
+                while (!split.equalsIgnoreCase("y") && !split.equalsIgnoreCase("n")) {
+                    System.out.print("Do you wanna split your game(y/n)?");
+                    split = scanner.nextLine();
+                }
+
+                if (split.equalsIgnoreCase("y")) {
+                    // Splitted hand gets the second card and deleted by normal hand
+                    players[i].addCardToHand(players[i].getHand().get(1), players[i].getSplittedHand());
+                    players[i].getHand().remove(players[i].getHand().get(1));
+
+                    // deal one more car to each hand
+                    players[i].addCardToHand(deck.dealCard(), players[i].getSplittedHand());
+                    players[i].addCardToHand(deck.dealCard(), players[i].getHand());
+
+                }
+            }
         }
 
         System.out.println();
@@ -37,8 +58,8 @@ public class BlackJack {
         Dealer dealer = new Dealer();
         // Dealing the cards
         // We can use this method because dealer class extends player
-        dealer.addCardToHand(deck.dealCard());
-        dealer.addCardToHand(deck.dealCard());
+        dealer.addCardToHand(deck.dealCard(), dealer.getHand());
+        dealer.addCardToHand(deck.dealCard(), dealer.getHand());
 
         // Show dealer's first card
         dealer.displayInitialHand();
@@ -62,29 +83,35 @@ public class BlackJack {
         System.out.printf("--- %s'S TURN ---\n", player.getName().toUpperCase());
         // infinite loop, only stops with break
         while (true) {
-            player.displayHand();
-            int handValue = player.getHandValue();
+            // Verify if has second hand
+            if (!player.getSplittedHand().isEmpty()) {
 
-            if (handValue >= 21) {
-                if (handValue == 21){
-                    System.out.println("BlackJack!");
-                }
-                break;
-            }
-
-            String userInput = "";
-            while(!userInput.equalsIgnoreCase("y") && !userInput.equalsIgnoreCase("n")) {
-                System.out.print("Do you want another card? (y/n): ");
-                userInput = scanner.nextLine();
-            }
-
-            // Ignoring case sensitive
-            if (userInput.equalsIgnoreCase("y")) {
-                player.addCardToHand(deck.dealCard());
             } else {
-                break;
+                player.displayHand();
+                int handValue = player.getHandValue();
+
+                if (handValue >= 21) {
+                    if (handValue == 21){
+                        System.out.println("BlackJack!");
+                    }
+                    break;
+                }
+
+                String userInput = "";
+                while(!userInput.equalsIgnoreCase("y") && !userInput.equalsIgnoreCase("n")) {
+                    System.out.print("Do you want another card? (y/n): ");
+                    userInput = scanner.nextLine();
+                }
+
+                // Ignoring case sensitive
+                if (userInput.equalsIgnoreCase("y")) {
+                    player.addCardToHand(deck.dealCard());
+                } else {
+                    break;
+                }
             }
         }
+
         System.out.println();
         player.displayHand();
         System.out.println("-------------------\n");
@@ -95,7 +122,7 @@ public class BlackJack {
         // while true, keep getting cards
         while (dealer.shouldHit()) {
             System.out.println("Dealer hits...");
-            dealer.addCardToHand(deck.dealCard());
+            dealer.addCardToHand(deck.dealCard(), dealer.getHand());
         }
         dealer.displayHand();
         System.out.println("---------------------\n");
