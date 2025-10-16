@@ -6,7 +6,6 @@ public class Player {
     // Player can
     private final ArrayList<Card> splittedHand;
     // Array of Card type to store player's cards
-    private int splitted
 
     // Constructor
     public Player(String name) {
@@ -41,19 +40,12 @@ public class Player {
     }
 
     // Method to show player's hand
-    public void displayHand() {
+    public void displayHand(ArrayList<Card> hand) {
         System.out.print(this.name + "'s hand: ");
-        for (Card card : this.hand) {
+        for (Card card : hand) {
             System.out.print(card + " | ");
         }
         System.out.println(" (Value: " + getHandValue(hand) + ")");
-        if (!this.splittedHand.isEmpty()) {
-            System.out.print(this.name + "'s second hand: ");
-            for (Card card : this.splittedHand) {
-                System.out.print(card + " | ");
-            }
-            System.out.println(" (Value: " + getHandValue(splittedHand) + ")");
-        }
     }
 
 
